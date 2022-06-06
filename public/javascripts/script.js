@@ -1,49 +1,5 @@
-function pushToTemplate(data) {
-    console.log("PUSH HERE")
-    console.log(data)
-    //you should return data in order to use it in the next then ...
-    return data
-  }
-  
-  function getArticles(take = 10, skip = 0) {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        url: HOME+"/articles",
-        type: 'GET',
-        data: {
-          take: take,
-          skip: skip,
-      },
-        success: function (data) {
-          resolve(data)
-        },
-        error: function (error) {
-          reject(error)
-        },
-      })
-    })
-  }
-
-  var posts = $.ajax({
+var posts = $.ajax({
     url: "/articles",
-    type: 'GET',
-    // data: {
-    //     take: 10,
-    //     skip: 1,
-    // },
-  })
-
-  var users = $.ajax({
-    url: "/users",
-    type: 'GET',
-    // data: {
-    //     take: 10,
-    //     skip: 1,
-    // },
-  })
-
-  var category = $.ajax({
-    url: "/categories",
     type: 'GET',
     // data: {
     //     take: 10,
@@ -72,66 +28,6 @@ function pushToTemplate(data) {
     }
     })
 
-  function getUsers(take = 10, skip = 0) {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        url: HOME+"/users",
-        type: 'GET',
-        data: {
-          take: take,
-          skip: skip,
-      },
-        success: function (data) {
-          resolve(data)
-        },
-        error: function (error) {
-          reject(error)
-        },
-      })
-    })
-  }
-  function getCategories(take = 10, skip = 0) {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        url: HOME+"/categories",
-        type: 'GET',
-        data: {
-          take: take,
-          skip: skip,
-      },
-        success: function (data) {
-          resolve(data)
-        },
-        error: function (error) {
-          reject(error)
-        },
-      })
-    })
-  }
-  function getComments(take = 10, skip = 0) {
-    return new Promise((resolve, reject) => {
-      $.ajax({
-        url: HOME+"/commentaires",
-        type: 'GET',
-        data: {
-          take: take,
-          skip: skip,
-      },
-        success: function (data) {
-          resolve(data)
-        },
-        error: function (error) {
-          reject(error)
-        },
-      })
-    })
-  }
   
   const HOME = "http://localhost:3000"
   
-  $(document).ready( () => {
-      getArticles().then(pushToTemplate).catch(console.error)
-      getUsers().then(pushToTemplate).catch(console.error)
-      getCategories().then(pushToTemplate).catch(console.error)
-      getComments().then(pushToTemplate).catch(console.error)
-  })
