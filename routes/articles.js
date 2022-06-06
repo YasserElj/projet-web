@@ -14,13 +14,18 @@ router.get("/all", async (req, res)=>
 });
 router.get("/",async (req,res)=>{
   let { skip, take } = req.query;
-    skip = skip || 1;
-    take = take || 10;
+    skip = parseInt(skip) || 1;
+    take = parseInt(take) || 100;
   const postAll= await prisma.post.findMany({
       skip:skip,
       take:take,
       where:{
         published:true
+      },
+      include:{
+        autor: true,
+        comments:true,
+        categories:true
       }
   })
   if(postAll) res.json(postAll)

@@ -24,7 +24,7 @@ model Post{
    id Int @id @default(autoincrement()) @map("_id") 
    title String? @db.VarChar(200)
    content String?
-   photos Json
+   photos Json?
    createdAt DateTime @default(now())
    updateAt  DateTime  @updatedAt
    published  Boolean @default(false)
@@ -32,7 +32,6 @@ model Post{
    autorId Int
    comments Comment[] // a post can have many comments
    categories Category[] @relation(references: [id])
-
 }
 
 
